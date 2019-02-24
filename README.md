@@ -11,4 +11,4 @@
 
 ### WebApp Created.
 
-I created my project webapp with pycharm. and added to git hub with .ide and pychache folder ignorations.
+I created my project webapp with pycharm. and added to git hub with .ida and pychache folder ignorations.
