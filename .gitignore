@@ -1,3 +1,5 @@
 WebApp/.idea
 WebApp/__Pycache
 WebApp/WebApp/__Pycache__
+WebApp/accounts/__Pycache__
+WebApp/accounts/migrations
