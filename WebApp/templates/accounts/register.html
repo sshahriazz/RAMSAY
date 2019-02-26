@@ -2,7 +2,8 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <div class="content-section">
+    <div class="col-md-6 offset-md-3">
+    <div class="container-fluid">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -17,6 +18,7 @@
         <small class="text-muted">
             Already have an account?<a class="ml-2" href="{% url 'accounts:login' %}">Sign In</a>
         </small>
+    </div>
     </div>
     </div>
 

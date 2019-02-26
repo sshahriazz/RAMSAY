@@ -1,7 +1,12 @@
 {% extends 'WebApp/Layout.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 
-    <div class="card">
+    <div class="content-section">
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        <div class="card">
         <div class="card-header">
             {{ user.username }} profile
         </div>
@@ -23,13 +28,25 @@
                         <h5 class="card-title">Last Online: {{ user.last_login|date:"M d, Y" }}</h5>
                         <h5 class="card-title">Date Joined: {{ user.date_joined|date:"M d, Y" }}</h5>
 
-                    <a href="{% url 'accounts:edit_profile' %}" class="btn btn-lg btn-block btn-outline-dark">Edit Profile</a>
                     <a href="{% url 'accounts:change_password' %}" class="btn btn-lg btn-block btn-outline-dark">Change Password</a>
                 </div>
             </div>
         </div>
         <div class="card-footer text-muted">
-            Developed By Sharieaz Kavier.
+            2 days ago
+        </div>
+    </div>
+        <br>
+        <legend class="border-bottom mb-4">Update Profile</legend>
+        <div class="col-md-6 offset-md-3">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form_info|crispy }}
+                {{ form_img|crispy }}
+                <div class="form-group">
+                    <button class="btn btn-block btn-lg btn-outline-warning">Update</button>
+                </div>
+            </form>
         </div>
     </div>
 

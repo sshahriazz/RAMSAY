@@ -27,10 +27,10 @@ def user_login_view(request):
 def user_logout_view(request):
     logout(request)
     messages.warning(request, f'You have been logged out. Login Again.')
-    return redirect('login')
+    return redirect('accounts:login')
 
 
-@login_required(redirect_field_name='login', login_url='login')
+@login_required(redirect_field_name='login', login_url='accounts:login')
 def user_profile_view(request):
     if User.is_authenticated:
         return render(request, 'accounts/profile.html', {})
@@ -61,21 +61,21 @@ def user_register_view(request):
 def edit_profile_view(request):
     if request.method == 'POST':
         form_info = UserUpdateForm(request.POST, instance=request.user)
-        form_img = UserPhotoUpdateForm(request.POST, request.FILES, instance=request.user)
+        form_img = UserPhotoUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if form_info.is_valid() and form_img.is_valid():
             form_info.save()
             form_img.save()
-            messages.success(request, f'Profile updated succesfully.')
-            return redirect('profile')
+            messages.success(request, f'Profile updated successfully.')
+            return redirect('accounts:profile')
     else:
         form_info = UserUpdateForm(instance=request.user)
-        form_img = UserPhotoUpdateForm(instance=request.user)
+        form_img = UserPhotoUpdateForm(instance=request.user.profile)
 
     context = {
         'form_info': form_info,
         'form_img': form_img,
     }
-    return render(request, 'accounts/profile.html', context)
+    return render(request, 'accounts/update_profile.html', context)
 
 
 def change_password_view(request):
@@ -85,7 +85,7 @@ def change_password_view(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, f'Password Updated.')
-            return redirect('profile')
+            return redirect('accounts:profile')
     else:
         form = UserPassChangeForm(user=request.user)
 
