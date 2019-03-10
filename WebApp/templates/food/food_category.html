@@ -1,0 +1,44 @@
+{% extends 'WebApp/Layout.html' %}
+{% block content %}
+
+    <div class="album py-5">
+        <legend class="border-bottom mb-4">Food Category
+        </legend>
+        <div class="container">
+
+            <div class="row">
+                {% for c in category %}
+                    <div class="col-md-12 col-sm-12">
+
+                        <div class="card mb-4 box-shadow">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3">
+                                    <img height="150rem" width="150rem" style="float: left;"
+                                         class="rounded-circle border p-1 m-2" src="{{ c.category_image.url }}"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="container-fluid mt-3">
+                                        <p>Category: {{ c.category_name }}</p>
+                                        <p>Category Info: {{ c.category_short_description }}</p>
+                                        <p>Food available:</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="container-fluid mt-3">
+                                        <a href="{% url 'food:category_to_info' c.category_name %}"
+                                           class="btn btn-block btn-lg btn-outline-dark">Info</a>
+                                        <a href="#" class="btn btn-block btn-lg btn-outline-dark">Dummy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
