@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Install Apps
     'accounts.apps.AccountsConfig',
+    'food.apps.FoodConfig',
     # Install Third Party Apps
     'crispy_forms'
 ]

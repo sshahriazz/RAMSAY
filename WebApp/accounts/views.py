@@ -21,7 +21,7 @@ def user_login_view(request):
             messages.info(request, f'Invalid Username or Password.')
             return redirect('accounts:login')  # on failure redirect to login itself
     else:
-        return render(request, 'accounts/login.html', {})
+        return render(request, 'accounts/login.html', {'page_title': 'Login'})
 
 
 def user_logout_view(request):
@@ -33,7 +33,7 @@ def user_logout_view(request):
 @login_required(redirect_field_name='login', login_url='accounts:login')
 def user_profile_view(request):
     if User.is_authenticated:
-        return render(request, 'accounts/profile.html', {})
+        return render(request, 'accounts/profile.html', {'page_title': 'Profile'})
     else:
         messages.warning(request, f'You are not logged in please login first.')
 
@@ -52,6 +52,7 @@ def user_register_view(request):
     else:
         form = RegistrationForm()
     context = {
+        'page_title': 'Register',
         'form': form,
     }
     return render(request, 'accounts/register.html', context)
@@ -72,6 +73,7 @@ def edit_profile_view(request):
         form_img = UserPhotoUpdateForm(instance=request.user.profile)
 
     context = {
+        'page_title': 'Edit Profile',
         'form_info': form_info,
         'form_img': form_img,
     }
@@ -90,6 +92,7 @@ def change_password_view(request):
         form = UserPassChangeForm(user=request.user)
 
     context = {
+        'page_title': 'Change Password',
         'form': form,
     }
     return render(request, 'accounts/change_password.html', context)

@@ -54,6 +54,6 @@ class UserPassChangeForm(PasswordChangeForm):
 class UserPhotoUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        exclude = ['image', 'user']
 
 

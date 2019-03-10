@@ -12,19 +12,23 @@
                          src="{{ user.profile.image.url }}">
                 </div>
                 <div class="col-md-8 col-sm-8">
-                        <h5 class="card-title">Name: {{ user.first_name }} {{ user.last_name }}</h5>
-                        <h5 class="card-title">Email: {{ user.email }}</h5>
-                        {% if user.is_staff %}
-                            <h5 class="card-title">Membership: Admin</h5>
-                        {% else %}
-                            <h5 class="card-title">Membership: Member</h5>
-                        {% endif %}
+                    <h5 class="card-title">Name: {{ user.first_name }} {{ user.last_name }}</h5>
+                    <h5 class="card-title">Email: {{ user.email }}</h5>
+                    {% if user.is_staff %}
+                        <h5 class="card-title">Membership: Admin</h5>
+                    {% else %}
+                        <h5 class="card-title">Membership: Member</h5>
+                    {% endif %}
 
-                        <h5 class="card-title">Last Online: {{ user.last_login|date:"M d, Y" }}</h5>
-                        <h5 class="card-title">Date Joined: {{ user.date_joined|date:"M d, Y" }}</h5>
+                    <h5 class="card-title">Date Joined: {{ user.date_joined|date:"M d, Y" }}</h5>
+                    <h5 class="card-title">Last Online: {{ user.last_login|date:"M d, Y" }}</h5>
 
-                    <a href="{% url 'accounts:edit_profile' %}" class="btn btn-lg btn-block btn-outline-dark">Edit Profile</a>
-                    <a href="{% url 'accounts:change_password' %}" class="btn btn-lg btn-block btn-outline-dark">Change Password</a>
+                    <h5 class="card-title">Favourite Category: {{ user.profile.favourite_category }}</h5>
+
+                    <a href="{% url 'accounts:edit_profile' %}" class="btn btn-lg btn-block btn-outline-dark">Edit
+                        Profile</a>
+                    <a href="{% url 'accounts:change_password' %}" class="btn btn-lg btn-block btn-outline-dark">Change
+                        Password</a>
                 </div>
             </div>
         </div>
@@ -32,6 +36,7 @@
             Developed By Sharieaz Kavier.
         </div>
     </div>
+
 
 {% endblock %}
 

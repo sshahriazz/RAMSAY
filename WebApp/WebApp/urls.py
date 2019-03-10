@@ -7,8 +7,8 @@ from django.conf.urls.static import static
 app_name = 'WebApp'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', landing_page, name="landing_page"),
+    path('admin/', admin.site.urls, name="admin"),
     path('accounts/', include('accounts.urls', namespace='accounts'))
 ]
 if settings.DEBUG:
