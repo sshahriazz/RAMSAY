@@ -12,5 +12,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('food/', include('food.urls', namespace='food'))
 ]
+
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

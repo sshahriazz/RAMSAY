@@ -32,6 +32,9 @@ class FoodInformation(models.Model):
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True, blank=False)
 
+    class Meta:
+        ordering = ('-upload_date',)
+
     def __str__(self):
         return self.food_name + " - From - " + self.food_category.category_name + " Category"
 
