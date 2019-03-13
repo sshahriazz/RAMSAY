@@ -10,12 +10,6 @@
             <div class="carousel-item active">
                 <img height="350px" class="d-block w-100" src="{{ user.profile.image.url }}" alt="First slide">
             </div>
-            <div class="carousel-item">
-                <img height="350px" class="d-block w-100" src="{{ user.profile.image.url }}" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img height="350px" class="d-block w-100" src="{{ user.profile.image.url }}" alt="Third slide">
-            </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -27,38 +21,80 @@
         </a>
     </div>
 
+    {% if user.is_authenticated %}
+        <div class="album py-5">
+            <legend class="border-bottom mb-4">Your Favourite Food's(
+                <small>Based on your Chosen Favourite Category.</small>
+                )
+            </legend>
+            <div class="container">
 
-    <div class="album py-5">
-        <legend class="border-bottom mb-4">Your Favourite Food's(
-            <small>Based on your Chosen Favourite Category.</small>
-            )
-        </legend>
-        <div class="container">
+                <div class="row">
+                    {% for f in food %}
+                        <div class="col-md-4">
 
-            <div class="row">
-                {% for f in food %}
-                    <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img height="250px" class="card-img-top" src="{{ f.food_image.url }}"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">{{ f.food_name }}</p>
+                                    <p class="card-text">{{ f.food_short_info|truncatechars:45 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{% url 'food:food_details' f.food_name %}"
+                                               class="btn btn-sm btn-outline-secondary">Details</a>
 
-                        <div class="card mb-4 box-shadow">
-                            <img height="250px" class="card-img-top" src="{{ f.food_image.url }}"
-                                 alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">{{ f.food_short_info }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">dummy</button>
+                                        </div>
+                                        <small class="text-muted">Love: {{ f.food_love }}</small>
                                     </div>
-                                    <small class="text-muted">Love: {{ f.food_love }}</small>
                                 </div>
                             </div>
+
                         </div>
+                    {% endfor %}
 
-                    </div>
-                {% endfor %}
-
+                </div>
             </div>
         </div>
-    </div>
+
+
+
+
+    {% else %}
+        <div class="album py-5">
+            <legend class="border-bottom mb-4">All Food's
+            </legend>
+            <div class="container">
+
+                <div class="row">
+                    {% for f in food_info %}
+                        <div class="col-md-4">
+
+                            <div class="card mb-4 box-shadow">
+                                <img height="250px" class="card-img-top" src="{{ f.food_image.url }}"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">{{ f.food_name }}</p>
+                                    <p class="card-text">{{ f.food_short_info|truncatechars:45 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{% url 'food:food_details' f.food_name %}"
+                                               class="btn btn-sm btn-outline-secondary">Details</a>
+
+                                        </div>
+                                        <small class="text-muted">Love: {{ f.food_love }}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
 
 {% endblock %}

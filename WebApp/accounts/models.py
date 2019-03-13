@@ -7,7 +7,7 @@ from food.models import FoodCategory
 # models for user profile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='de_pro.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='de_pro.png', upload_to='profile_pics')
     favourite_category = models.ForeignKey(FoodCategory, on_delete=models.SET_NULL, null=True)
     house = models.CharField(max_length=150, null=True)
     street = models.CharField(max_length=150, null=True)

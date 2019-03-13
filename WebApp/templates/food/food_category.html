@@ -19,16 +19,15 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="container-fluid mt-3">
-                                        <p>Category: {{ c.category_name }}</p>
+                                        <h5>Category: {{ c.category_name }}</h5>
                                         <p>Category Info: {{ c.category_short_description }}</p>
-                                        <p>Food available:</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-3">
                                     <div class="container-fluid mt-3">
                                         <a href="{% url 'food:category_to_info' c.category_name %}"
-                                           class="btn btn-block btn-lg btn-outline-dark">Info</a>
-                                        <a href="#" class="btn btn-block btn-lg btn-outline-dark">Dummy</a>
+                                           class="btn btn-block btn-outline-dark">Show all</a>
+
                                     </div>
                                 </div>
                             </div>

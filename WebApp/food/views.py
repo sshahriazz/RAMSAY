@@ -21,3 +21,13 @@ def food_ifo_form_category(request, category_name):
     }
 
     return render(request, 'food/food_details_boc.html', context)
+
+
+def food_details_bosc(request, food_name):
+    food_detail = FoodInformation.objects.filter(food_name__exact=food_name)
+    return render(request, 'food/food_details.html', {'food': food_detail})
+
+
+def all_food_view(request):
+    food_detail = FoodInformation.objects.all()
+    return render(request, 'food/all_food.html', {'food': food_detail})

@@ -20,15 +20,15 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="container-fluid mt-3">
                                         <p>Category: {{ l.food_name }}</p>
-                                        <p>Category Info: {{ l.food_short_info }}</p>
+                                        <p>Category Info: {{ l.food_short_info|truncatechars:100 }}</p>
                                         <p>Food Added: {{ l.upload_date|date:"d-M-Y" }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-3">
                                     <div class="container-fluid mt-3">
-                                        <a href="#"
-                                           class="btn btn-block btn-lg btn-outline-dark">Info</a>
-                                        <a href="#" class="btn btn-block btn-lg btn-outline-dark">Dummy</a>
+                                        <a href="{% url 'food:food_details' l.food_name%}"
+                                           class="btn btn-block  btn-outline-dark">Details</a>
+                                        <a href="#" class="btn btn-block  btn-outline-dark">Dummy</a>
                                     </div>
                                 </div>
                             </div>

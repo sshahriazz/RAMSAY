@@ -6,8 +6,8 @@ from PIL import Image
 class FoodCategory(models.Model):
     category_name = models.CharField(max_length=50, null=False)
     category_image = models.ImageField(default='default_food.jpg', upload_to='food_cat_images')
-    category_short_description = models.CharField(max_length=250)
-    category_long_description = models.CharField(max_length=500)
+    category_short_description = models.TextField(max_length=250)
+    category_long_description = models.TextField(max_length=500)
 
     def __str__(self):
         return self.category_name
@@ -25,9 +25,10 @@ class FoodCategory(models.Model):
 class FoodInformation(models.Model):
     food_category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
     food_name = models.CharField(max_length=50)
+    best_weather = models.CharField(max_length=50)
     food_image = models.ImageField(default='default_food.jpg', upload_to='food_cat_images')
-    food_short_info = models.CharField(max_length=250)
-    food_long_description = models.CharField(max_length=500)
+    food_short_info = models.TextField(max_length=250)
+    food_long_description = models.TextField(max_length=500)
     food_love = models.IntegerField(null=True)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True, blank=False)

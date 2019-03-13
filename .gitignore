@@ -3,3 +3,7 @@ WebApp/__Pycache
 WebApp/WebApp/__Pycache__
 WebApp/accounts/__Pycache__
 WebApp/accounts/migrations
+
+*.pyc
+*.pyc
+WebApp/food/__pycache__
