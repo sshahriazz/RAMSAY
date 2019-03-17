@@ -7,3 +7,8 @@ WebApp/accounts/migrations
 *.pyc
 *.pyc
 WebApp/food/__pycache__
+WebApp/food/__pycache__/models.cpython-37.pyc
+WebApp/food/__pycache__/models.cpython-37.pyc
+WebApp/food/migrations/0003_foodinformation_price.py
+WebApp/food/__pycache__/models.cpython-37.pyc
+*.pyc

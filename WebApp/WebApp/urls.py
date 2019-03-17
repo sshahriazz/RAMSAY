@@ -10,6 +10,7 @@ urlpatterns = [
     path('', landing_page, name="landing_page"),
     path('admin/', admin.site.urls, name="admin"),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('oauth/', include('social_django.urls', namespace='social')),
     path('food/', include('food.urls', namespace='food')),
     path('search/', search_view, name='search')
 ]
