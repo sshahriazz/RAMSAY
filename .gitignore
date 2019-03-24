@@ -6,3 +6,5 @@ WebApp/accounts/migrations
 WebApp/food/__pycache__
 WebApp/food/migrations
 *.pyc
+*.pyc
+*.pyc
