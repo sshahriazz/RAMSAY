@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 django-crispy-forms = "*"
 pillow = "*"
-social-auth-app-django="*"
+django-ipware = "*"
+geoip2 = "*"
 [requires]
 python_version = "3.7"

@@ -32,7 +32,7 @@ class FoodInformation(models.Model):
     food_love = models.IntegerField(null=True)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True, blank=False)
-    price = models.IntegerField(default=00,null=False)
+    price = models.IntegerField(default=00, null=False)
 
     class Meta:
         ordering = ('-upload_date',)
@@ -48,3 +48,4 @@ class FoodInformation(models.Model):
             output_size = (600, 600)
             img.thumbnail(output_size)
             img.save(self.food_image.path)
+

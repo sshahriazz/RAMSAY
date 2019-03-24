@@ -13,6 +13,7 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
     path('food/', include('food.urls', namespace='food')),
     path('search/', search_view, name='search')
+    # path('weathertest', weather_data_view, name='weather')
 ]
 
 if settings.DEBUG:

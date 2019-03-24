@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
 WSGI_APPLICATION = 'WebApp.wsgi.application'
 
 # Database
