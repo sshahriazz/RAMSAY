@@ -32,7 +32,8 @@ class FoodInformation(models.Model):
     food_love = models.IntegerField(null=True)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True, blank=False)
-    price = models.IntegerField(default=00, null=False)
+    best_in_city = models.CharField(max_length=10,null=True)
+    price = models.FloatField(default=00, null=False)
 
     class Meta:
         ordering = ('-upload_date',)

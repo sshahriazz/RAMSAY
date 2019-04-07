@@ -11,10 +11,8 @@ def get_city(request):
     ip_data = get_client_ip(request)
     client_ip = ip_data[0]
     geo_data = GeoIP2()
-    citys = geo_data.city('2.255.254.17')  # in production this will be replaced by client_ip variable
-
+    citys = geo_data.city('103.76.152.246')  # in production this will be replaced by client_ip variable
     extract_city = str(citys['time_zone'])
-
     splited_data = extract_city.split('/')
     city = splited_data[1]
     return city
@@ -26,12 +24,11 @@ def landing_page(request):
 
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1'
 
-    weather_data = []
     city = get_city(request)
     print(city)
     city_weather = requests.get(
         url.format(city)).json()  # request the API data and convert the JSON to Python data types
-
+    weather_data = []
     weather = {
         'city': city,
         'temperature': city_weather['main']['temp'],
@@ -40,7 +37,6 @@ def landing_page(request):
     }
 
     weather_data.append(weather)  # add the data for the current city into our list
-
 
     if User.is_authenticated:
         for profile_obj in user_profile_objects:
@@ -55,11 +51,11 @@ def landing_page(request):
                         'weather_data': weather_data
                     }
                     return render(request, 'WebApp/Landing_Page.html', context)
-    else:
-        return render(request, 'WebApp/Landing_Page.html', {'page_title': "Home",
-                                                            'food_info': food_information_obj,
-                                                            'weather_data': weather_data
-                                                            })
+        else:
+            return render(request, 'WebApp/Landing_Page.html', {'page_title': "Home",
+                                                                'food_info': food_information_obj,
+                                                                'weather_data': weather_data
+                                                                })
 
 
 def search_view(request):
@@ -70,7 +66,6 @@ def search_view(request):
             food_category__category_name__contains=search_query) or FoodInformation.objects.filter(
             food_short_info__contains=search_query)
         return render(request, 'WebApp/search.html', {'search': search_tag})
-
 
 # def weather_data_view(request):
 #     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1'
