@@ -20,7 +20,7 @@ def get_city(request):
 
 def landing_page(request):
     user_profile_objects = Profile.objects.all()
-    food_information_obj = FoodInformation.objects.all()
+
 
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1'
 
@@ -39,18 +39,21 @@ def landing_page(request):
     weather_data.append(weather)  # add the data for the current city into our list
 
     if User.is_authenticated:
+        food_information_obj = FoodInformation.objects.all()
         for profile_obj in user_profile_objects:
-            for food_info_obj in food_information_obj:
-                if food_info_obj.food_category == profile_obj.favourite_category:
-                    food = FoodInformation.objects.filter(food_category=profile_obj.favourite_category)
-
-                    context = {
-                        'page_title': "Home",
-                        'food': food,
-                        'food_info': food_information_obj,
-                        'weather_data': weather_data
-                    }
-                    return render(request, 'WebApp/Landing_Page.html', context)
+                food = FoodInformation.objects.filter(food_category=profile_obj.favourite_category)
+                food_top3 = FoodInformation.objects.filter(food_love__gt=400)
+                a = food_top3.count()
+                print("Food: ", food)
+                print("Food t3", food_top3, a)
+                context = {
+                    'page_title': "Home",
+                    'food': food,
+                    'food_info': food_information_obj,
+                    'weather_data': weather_data,
+                    'top_food': food_top3
+                }
+                return render(request, 'WebApp/Landing_Page.html', context)
         else:
             return render(request, 'WebApp/Landing_Page.html', {'page_title': "Home",
                                                                 'food_info': food_information_obj,
